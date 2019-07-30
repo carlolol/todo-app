@@ -1,33 +1,53 @@
 <template>
   <nav>
-      <v-toolbar flat app>
-          <v-app-bar-nav-icon class="grey--text" @click="drawer=!drawer"></v-app-bar-nav-icon>
-          <v-toolbar-title class="text-uppercase grey--text">
-              <span class="font-weight-light">Todo</span>
-              <span>App</span>
-          </v-toolbar-title>
+    <v-toolbar flat app>
+      <v-app-bar-nav-icon class="grey--text" @click="drawer=!drawer"></v-app-bar-nav-icon>
 
-          <v-spacer></v-spacer>
+      <v-toolbar-title class="text-uppercase grey--text">
+        <span class="font-weight-light">Todo</span>
+        <span>App</span>
+      </v-toolbar-title>
 
-          <v-btn text color="grey">
-              <span>Sign Out</span>
-              <v-icon right>mdi-exit-to-app</v-icon>
-          </v-btn>
+      <v-spacer></v-spacer>
 
-      </v-toolbar>
+      <v-btn text color="grey">
+        <span>Sign Out</span>
+        <v-icon right>mdi-exit-to-app</v-icon>
+      </v-btn>
 
-      <v-navigation-drawer v-model="drawer" app temporary color="#f83e70">
-          <v-list>
-              <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
-                    <v-list-item-action>
-                        <v-icon class="white--text">{{ link.icon }}</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title class="white--text">{{ link.text }}</v-list-item-title>
-                    </v-list-item-content>
-              </v-list-item>
-          </v-list>
-      </v-navigation-drawer>
+    </v-toolbar>
+
+    <v-navigation-drawer v-model="drawer" app temporary color="#f83e70">
+
+      <v-layout align-center justify-center column>
+
+        <v-flex class="mt-5">
+          <v-avatar size="100">
+            <img src="/256_1.png">
+          </v-avatar>
+        </v-flex>
+
+        <v-flex class="mt-1">
+          <p class="white--text subtitle-1">Mario</p>
+        </v-flex>
+
+      </v-layout>
+
+      <v-list>
+        <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
+
+          <v-list-item-action>
+            <v-icon class="white--text">{{ link.icon }}</v-icon>
+          </v-list-item-action>
+
+          <v-list-item-content>
+            <v-list-item-title class="white--text">{{ link.text }}</v-list-item-title>
+          </v-list-item-content>
+
+        </v-list-item>
+      </v-list>
+
+    </v-navigation-drawer>
   </nav>
 </template>
 

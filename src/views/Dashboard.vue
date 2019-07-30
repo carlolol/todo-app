@@ -4,6 +4,30 @@
 
     <v-container class="my-5">
 
+      <v-layout row class="mb-3">
+
+        <v-tooltip top>
+          <template v-slot:activator="{ on }">
+            <v-btn small text color="grey" @click="sortBy('title')" v-on="on">
+              <v-icon left small>mdi-folder</v-icon>
+              <span class="caption text-lowercase">By project name</span>
+            </v-btn>
+          </template>
+          <span>Sort projects by project name</span>
+        </v-tooltip>
+
+        <v-tooltip top>
+          <template v-slot:activator="{ on }">
+            <v-btn small text color="grey" @click="sortBy('person')" v-on="on">
+              <v-icon left small>mdi-account</v-icon>
+              <span class="caption text-lowercase">By person</span>
+            </v-btn>
+          </template>
+          <span>Sort projects by person</span>
+        </v-tooltip>
+
+      </v-layout>
+
       <v-card flat v-for="project in projects" :key="project.title" class="pa-0">
 
         <v-layout row wrap :class="`pa-3 project ${project.status}`">
@@ -24,7 +48,7 @@
           </v-flex>
 
           <v-flex xs2 sm4 md2>
-            <div>
+            <div class="text-right">
               <v-chip small :color="getColor(project.status)" :class="`${project.status} white--text caption my-2`">
                 {{ project.status }}
               </v-chip>
@@ -49,13 +73,13 @@ export default {
       projects: [
         { 
           title: 'Design a new website', 
-          person: 'Mario', 
+          person: 'Chun Li', 
           due: '1st Jan 2019', 
           status: 'ongoing', 
           content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
         { 
           title: 'Code up the homepage', 
-          person: 'Chun Li', 
+          person: 'Mario', 
           due: '10th Jan 2019', 
           status: 'complete', 
           content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consequuntur eos eligendi illum minima adipisci deleniti, dicta mollitia enim explicabo fugiat quidem ducimus praesentium voluptates porro molestias non sequi animi!'},
@@ -77,6 +101,9 @@ export default {
   methods: {
     getColor: (status) => {
       return status=="ongoing" ? "#ffaa2c" : status=="complete" ? "#3cd1c2" : "#f83e70";
+    },
+    sortBy(keyword) {
+      this.projects.sort((a, b) => a[keyword] < b[keyword] ? -1 : 1);
     }
   }
 }
