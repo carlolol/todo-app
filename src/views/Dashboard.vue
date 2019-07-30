@@ -25,7 +25,7 @@
 
           <v-flex xs2 sm4 md2>
             <div>
-              <v-chip small :class="`${project.status} white--text caption my-2`">
+              <v-chip small :color="getColor(project.status)" :class="`${project.status} white--text caption my-2`">
                 {{ project.status }}
               </v-chip>
             </div>
@@ -75,16 +75,8 @@ export default {
     }
   },
   methods: {
-    getColor(status) {
-      if(status=="ongoing"){
-        return "#ffaa2c";
-      }
-      else if(status=="complete"){
-        return "#3cd1c2";
-      }
-      else{
-        return "#f83e70";
-      }
+    getColor: (status) => {
+      return status=="ongoing" ? "#ffaa2c" : status=="complete" ? "#3cd1c2" : "#f83e70";
     }
   }
 }
@@ -95,10 +87,10 @@ export default {
   border-left: 4px solid #3cd1c2;
 }
 .project.ongoing{
-  border-left: 4px solid orange;
+  border-left: 4px solid #ffaa2c;
 }
 .project.overdue{
-  border-left: 4px solid tomato;
+  border-left: 4px solid #f83e70;
 }
 .v-sheet{
   border-radius: 0px;
@@ -106,14 +98,5 @@ export default {
 .row{
   margin-right: 0px;
   margin-left: 0px;
-}
-.v-chip.complete{
-  background: #3cd1c2;
-}
-.v-chip.ongoing{
-  background: #ffaa2c;
-}
-.v-chip.overdue{
-  background: #f83e70;
 }
 </style>
